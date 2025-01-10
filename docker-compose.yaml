@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_INITDB_SKIP_TZINFO: "true"
+      MYSQL_DEFAULT_AUTHENTICATION_PLUGIN: mysql_native_password
+
+    ports:
+      - "3306:3306"
+
+
+  spring-boot-app:
+    image: wire
+    container_name: spring-boot-container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/test
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: 1234
+
