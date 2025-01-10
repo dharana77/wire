@@ -2,6 +2,7 @@
 ## 와이어 바알리
 
 ### 실행 방법 
+- build/libs/ 에 wire.jar 가 없다면 bootjar을 통해 wire.jar 파일을 생성합니다.
 
 - 루트 경로에서 `docker build -t wire .` 명령어를 통해 도커 이미지를 생성합니다.
 
